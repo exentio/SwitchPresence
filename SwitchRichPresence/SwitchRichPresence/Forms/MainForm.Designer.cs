@@ -47,6 +47,8 @@
             this.utilsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportIconsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox_overridedetail = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_icon)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -166,7 +168,7 @@
             // 
             // textBox_overridesicon
             // 
-            this.textBox_overridesicon.Location = new System.Drawing.Point(208, 251);
+            this.textBox_overridesicon.Location = new System.Drawing.Point(208, 235);
             this.textBox_overridesicon.Name = "textBox_overridesicon";
             this.textBox_overridesicon.Size = new System.Drawing.Size(118, 20);
             this.textBox_overridesicon.TabIndex = 12;
@@ -174,7 +176,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(219, 235);
+            this.label4.Location = new System.Drawing.Point(219, 219);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(97, 13);
             this.label4.TabIndex = 13;
@@ -183,7 +185,7 @@
             // 
             // textBox_overridebicon
             // 
-            this.textBox_overridebicon.Location = new System.Drawing.Point(208, 212);
+            this.textBox_overridebicon.Location = new System.Drawing.Point(208, 194);
             this.textBox_overridebicon.Name = "textBox_overridebicon";
             this.textBox_overridebicon.Size = new System.Drawing.Size(118, 20);
             this.textBox_overridebicon.TabIndex = 14;
@@ -192,7 +194,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(219, 196);
+            this.label5.Location = new System.Drawing.Point(219, 178);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(87, 13);
             this.label5.TabIndex = 15;
@@ -225,11 +227,30 @@
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(228, 258);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(75, 13);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "Detail override";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBox_overridedetail
+            // 
+            this.textBox_overridedetail.Location = new System.Drawing.Point(208, 274);
+            this.textBox_overridedetail.Name = "textBox_overridedetail";
+            this.textBox_overridedetail.Size = new System.Drawing.Size(118, 20);
+            this.textBox_overridedetail.TabIndex = 18;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(338, 440);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.textBox_overridedetail);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox_overridebicon);
             this.Controls.Add(this.label4);
@@ -282,6 +303,8 @@
         private System.Windows.Forms.ToolStripMenuItem utilsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportIconsToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBox_overridedetail;
     }
 }
 

@@ -67,7 +67,6 @@ namespace SwitchRichPresence
 
                 if (string.IsNullOrWhiteSpace(textBox_overridebicon.Text) && (CurrentPlaying == null))
                 {
-                    discord.presence.largeImageKey = "";
                     SaveConfig();
                 }
                 else if (string.IsNullOrWhiteSpace(textBox_overridebicon.Text) && (CurrentPlaying != null))
@@ -81,8 +80,23 @@ namespace SwitchRichPresence
                     SaveConfig();
                 }
 
-                //update user
-                checkBox_showUser_CheckedChanged(null, null);
+                if (string.IsNullOrWhiteSpace(textBox_overridedetail.Text) && (CurrentPlaying == null))
+                {
+                    SaveConfig();
+                }
+                else if (string.IsNullOrWhiteSpace(textBox_overridedetail.Text) && (CurrentPlaying != null))
+                {
+                    discord.presence.details = "Playing " + CurrentPlaying.Metadata.GetLanguage().ApplicationName;
+                    SaveConfig();
+                }
+                else if (CurrentPlaying != null)
+                {
+                    discord.presence.details = "Playing " + textBox_overridedetail.Text;
+                    SaveConfig();
+                }
+
+                    //update user
+                    checkBox_showUser_CheckedChanged(null, null);
                 //update time
                 checkBox_showTime_CheckedChanged(null, null);
 
@@ -121,12 +135,13 @@ namespace SwitchRichPresence
         {
             Config config = new Config()
             {
-                Ip = textBox_ip.Text,
+                IP = textBox_ip.Text,
                 ClientID = textBox_clientId.Text,
                 ShowTimer = checkBox_showTime.Checked,
                 ShowUser = checkBox_showUser.Checked,
                 SIcon = textBox_overridesicon.Text,
-                BIcon = textBox_overridebicon.Text
+                LIcon = textBox_overridebicon.Text,
+                Detail = textBox_overridedetail.Text
             };
             config.Save();
         }
@@ -134,12 +149,13 @@ namespace SwitchRichPresence
         {
             Config config = new Config();
             appID = config.ClientID;
-            textBox_ip.Text = config.Ip;
+            textBox_ip.Text = config.IP;
             textBox_clientId.Text = config.ClientID;
             checkBox_showTime.Checked = config.ShowTimer;
             checkBox_showUser.Checked = config.ShowUser;
             textBox_overridesicon.Text = config.SIcon;
-            textBox_overridebicon.Text = config.BIcon;
+            textBox_overridebicon.Text = config.LIcon;
+            textBox_overridedetail.Text = config.Detail;
         }
 
         public MainForm()

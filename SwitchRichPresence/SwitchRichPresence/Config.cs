@@ -12,11 +12,12 @@ namespace SwitchRichPresence
         private const string CONFIG_PATH = "config.txt";
 
         public string ClientID { get; set; } = "464720851976060940";
-        public string Ip { get; set; } = "192.168.0.XX";
+        public string IP { get; set; } = "192.168.0.XX";
         public bool ShowUser { get; set; } = true;
         public bool ShowTimer { get; set; } = true;
         public string SIcon { get; set; } = "";
-        public string BIcon { get; set; } = "";
+        public string LIcon { get; set; } = "";
+        public string Detail { get; set; } = "";
 
         public Config()
         {
@@ -38,7 +39,7 @@ namespace SwitchRichPresence
                                     ClientID = parts[1];
                                     break;
                                 case "ip":
-                                    Ip = parts[1];
+                                    IP = parts[1];
                                     break;
                                 case "show_user":
                                     ShowUser = bool.Parse(parts[1]);
@@ -46,11 +47,14 @@ namespace SwitchRichPresence
                                 case "show_timer":
                                     ShowTimer = bool.Parse(parts[1]);
                                     break;
-                                case "sicon":
+                                case "ssmall_icon":
                                     SIcon = parts[1];
                                     break;
-                                case "bicon":
-                                    BIcon = parts[1];
+                                case "large_icon":
+                                    LIcon = parts[1];
+                                    break;
+                                case "detail":
+                                    Detail = parts[1];
                                     break;
                             }
                         }
@@ -64,11 +68,12 @@ namespace SwitchRichPresence
             List<string> lines = new List<string>()
             {
                 "client_id=" + ClientID,
-                "ip=" + Ip,
+                "ip=" + IP,
                 "show_user=" + (ShowUser ? "true" : "false"),
                 "show_timer=" + (ShowTimer ? "true" : "false"),
                 "sicon=" +  SIcon,
-                "bicon=" + BIcon,
+                "bicon=" + LIcon,
+                "detail=" + Detail,
             };
 
             File.WriteAllLines(CONFIG_PATH, lines);
