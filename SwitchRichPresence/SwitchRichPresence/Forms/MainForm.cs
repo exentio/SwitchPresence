@@ -91,7 +91,7 @@ namespace SwitchRichPresence
                 }
                 else if (CurrentPlaying != null)
                 {
-                    discord.presence.details = "Playing " + textBox_overridedetail.Text;
+                    discord.presence.details = textBox_overridedetail.Text;
                     SaveConfig();
                 }
 
