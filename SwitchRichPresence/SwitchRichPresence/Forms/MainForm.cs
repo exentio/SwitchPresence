@@ -41,7 +41,7 @@ namespace SwitchRichPresence
                         details = "Playing " + CurrentPlaying.Metadata.GetLanguage().ApplicationName,
                         smallImageKey = "icon",
                         smallImageText = "SwitchPresence Sysmodule",
-                        largeImageKey = CurrentPlaying.Metadata.BaseTitleId.ToLower(),
+                        largeImageKey = CurrentPlaying.Metadata.TitleId,
                         largeImageText = CurrentPlaying.Metadata.GetLanguage().ApplicationName,
                         startTimestamp = startTime,
                     };
@@ -260,7 +260,7 @@ namespace SwitchRichPresence
         {
             if (string.IsNullOrWhiteSpace(textBox_overridelicon.Text) && (CurrentPlaying != null))
             {
-                discord.presence.largeImageKey = CurrentPlaying.Metadata.BaseTitleId.ToLower();
+                discord.presence.largeImageKey = CurrentPlaying.Metadata.TitleId;
             }
             else if (CurrentPlaying != null)
             {
