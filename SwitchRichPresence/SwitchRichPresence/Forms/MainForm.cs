@@ -54,47 +54,6 @@ namespace SwitchRichPresence
                         startTimestamp = startTime,
                     };
                 }
-                if (string.IsNullOrWhiteSpace(textBox_overridesicon.Text))
-                {
-                    discord.presence.smallImageKey = "icon";
-                    SaveConfig();
-                }
-                else
-                {
-                    discord.presence.smallImageKey = textBox_overridesicon.Text;
-                    SaveConfig();
-                }
-
-                if (string.IsNullOrWhiteSpace(textBox_overridebicon.Text) && (CurrentPlaying == null))
-                {
-                    SaveConfig();
-                }
-                else if (string.IsNullOrWhiteSpace(textBox_overridebicon.Text) && (CurrentPlaying != null))
-                {
-                    discord.presence.largeImageKey = CurrentPlaying.Metadata.BaseTitleId.ToLower();
-                    SaveConfig();
-                }
-                else if (CurrentPlaying != null)
-                {
-                    discord.presence.largeImageKey = textBox_overridebicon.Text;
-                    SaveConfig();
-                }
-
-                if (string.IsNullOrWhiteSpace(textBox_overridedetail.Text) && (CurrentPlaying == null))
-                {
-                    SaveConfig();
-                }
-                else if (string.IsNullOrWhiteSpace(textBox_overridedetail.Text) && (CurrentPlaying != null))
-                {
-                    discord.presence.details = "Playing " + CurrentPlaying.Metadata.GetLanguage().ApplicationName;
-                    SaveConfig();
-                }
-                else if (CurrentPlaying != null)
-                {
-                    discord.presence.details = textBox_overridedetail.Text;
-                    SaveConfig();
-                }
-
                     //update user
                     checkBox_showUser_CheckedChanged(null, null);
                 //update time
@@ -140,7 +99,7 @@ namespace SwitchRichPresence
                 ShowTimer = checkBox_showTime.Checked,
                 ShowUser = checkBox_showUser.Checked,
                 SIcon = textBox_overridesicon.Text,
-                LIcon = textBox_overridebicon.Text,
+                LIcon = textBox_overridelicon.Text,
                 Detail = textBox_overridedetail.Text
             };
             config.Save();
@@ -154,7 +113,7 @@ namespace SwitchRichPresence
             checkBox_showTime.Checked = config.ShowTimer;
             checkBox_showUser.Checked = config.ShowUser;
             textBox_overridesicon.Text = config.SIcon;
-            textBox_overridebicon.Text = config.LIcon;
+            textBox_overridelicon.Text = config.LIcon;
             textBox_overridedetail.Text = config.Detail;
         }
 
@@ -173,6 +132,10 @@ namespace SwitchRichPresence
 
             discord.Initialize(appID);
             DiscordRpc.UpdatePresence(discord.presence);
+
+            textBox_overridedetail.TextChanged += (o, e) => OverrideDetail();
+            textBox_overridelicon.TextChanged += (o, e) => OverrideLargeIcon();
+            textBox_overridesicon.TextChanged += (o, e) => OverrideSmallIcon();
 
         }
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -275,6 +238,49 @@ namespace SwitchRichPresence
             }
         }
 
+        private void OverrideDetail()
+        {
+            if (string.IsNullOrWhiteSpace(textBox_overridedetail.Text) && (CurrentPlaying == null))
+            {
+                discord.presence.details = "Not Playing";
+            }
+            else if (string.IsNullOrWhiteSpace(textBox_overridedetail.Text) && (CurrentPlaying != null))
+            {
+                discord.presence.details = "Playing " + CurrentPlaying.Metadata.GetLanguage().ApplicationName;
+            }
+            else if (CurrentPlaying != null)
+            {
+                discord.presence.details = textBox_overridedetail.Text;
+            }
+            SaveConfig();
+        }
+
+        private void OverrideSmallIcon()
+        {
+            if (string.IsNullOrWhiteSpace(textBox_overridesicon.Text))
+            {
+                discord.presence.smallImageKey = "icon";
+            }
+            else
+            {
+                discord.presence.smallImageKey = textBox_overridesicon.Text;
+            }
+            SaveConfig();
+        }
+
+        private void OverrideLargeIcon()
+        {
+            if (string.IsNullOrWhiteSpace(textBox_overridelicon.Text) && (CurrentPlaying != null))
+            {
+                discord.presence.largeImageKey = CurrentPlaying.Metadata.BaseTitleId.ToLower();
+            }
+            else if (CurrentPlaying != null)
+            {
+                discord.presence.largeImageKey = textBox_overridelicon.Text;
+            }
+            SaveConfig();
+        }
+
         private void checkBox_showTime_CheckedChanged(object sender, EventArgs e)
         {
             if (apps != null)
@@ -305,6 +311,10 @@ namespace SwitchRichPresence
 
         }
 
+        private void textBox_overridesicon_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
  }

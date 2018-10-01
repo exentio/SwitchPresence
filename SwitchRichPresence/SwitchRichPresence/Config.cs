@@ -47,7 +47,7 @@ namespace SwitchRichPresence
                                 case "show_timer":
                                     ShowTimer = bool.Parse(parts[1]);
                                     break;
-                                case "ssmall_icon":
+                                case "small_icon":
                                     SIcon = parts[1];
                                     break;
                                 case "large_icon":

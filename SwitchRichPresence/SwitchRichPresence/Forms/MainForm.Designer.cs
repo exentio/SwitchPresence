@@ -42,7 +42,7 @@
             this.textBox_clientId = new System.Windows.Forms.TextBox();
             this.textBox_overridesicon = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox_overridebicon = new System.Windows.Forms.TextBox();
+            this.textBox_overridelicon = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.utilsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportIconsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -172,6 +172,7 @@
             this.textBox_overridesicon.Name = "textBox_overridesicon";
             this.textBox_overridesicon.Size = new System.Drawing.Size(118, 20);
             this.textBox_overridesicon.TabIndex = 12;
+            this.textBox_overridesicon.TextChanged += new System.EventHandler(this.textBox_overridesicon_TextChanged);
             // 
             // label4
             // 
@@ -183,13 +184,13 @@
             this.label4.Text = "Small Icon override";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox_overridebicon
+            // textBox_overridelicon
             // 
-            this.textBox_overridebicon.Location = new System.Drawing.Point(208, 194);
-            this.textBox_overridebicon.Name = "textBox_overridebicon";
-            this.textBox_overridebicon.Size = new System.Drawing.Size(118, 20);
-            this.textBox_overridebicon.TabIndex = 14;
-            this.textBox_overridebicon.TextChanged += new System.EventHandler(this.textBox_overridebicon_TextChanged);
+            this.textBox_overridelicon.Location = new System.Drawing.Point(208, 194);
+            this.textBox_overridelicon.Name = "textBox_overridelicon";
+            this.textBox_overridelicon.Size = new System.Drawing.Size(118, 20);
+            this.textBox_overridelicon.TabIndex = 14;
+            this.textBox_overridelicon.TextChanged += new System.EventHandler(this.textBox_overridebicon_TextChanged);
             // 
             // label5
             // 
@@ -252,7 +253,7 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox_overridedetail);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox_overridebicon);
+            this.Controls.Add(this.textBox_overridelicon);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox_overridesicon);
             this.Controls.Add(this.label3);
@@ -298,7 +299,7 @@
         private System.Windows.Forms.TextBox textBox_clientId;
         private System.Windows.Forms.TextBox textBox_overridesicon;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox_overridebicon;
+        private System.Windows.Forms.TextBox textBox_overridelicon;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolStripMenuItem utilsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportIconsToolStripMenuItem;
