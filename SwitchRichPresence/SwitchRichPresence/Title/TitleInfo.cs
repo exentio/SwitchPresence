@@ -1,15 +1,7 @@
 ﻿using Random0666_s_ToolBox.Modules.NintendoArchive;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static SwitchRichPresence.TitleInfo;
 
 namespace SwitchRichPresence
 {
