@@ -240,11 +240,7 @@ namespace SwitchRichPresence
 
         private void OverrideDetail()
         {
-            if (string.IsNullOrWhiteSpace(textBox_overridedetail.Text) && (CurrentPlaying == null))
-            {
-                discord.presence.details = "Not Playing";
-            }
-            else if (string.IsNullOrWhiteSpace(textBox_overridedetail.Text) && (CurrentPlaying != null))
+            if (string.IsNullOrWhiteSpace(textBox_overridedetail.Text) && (CurrentPlaying != null))
             {
                 discord.presence.details = "Playing " + CurrentPlaying.Metadata.GetLanguage().ApplicationName;
             }
