@@ -45,6 +45,9 @@ namespace SwitchRichPresence
                         largeImageText = CurrentPlaying.Metadata.GetLanguage().ApplicationName,
                         startTimestamp = startTime,
                     };
+                    OverrideDetail();
+                    OverrideLargeIcon();
+                    OverrideSmallIcon();
                 }
                     //update user
                     checkBox_showUser_CheckedChanged(null, null);
