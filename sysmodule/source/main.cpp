@@ -16,7 +16,8 @@
 #define TITLE_ID 0x420000000000001E
 
 
-extern "C" {
+extern "C" 
+{
     extern u32 __start__;
 
     u32 __nx_applet_type = AppletType_None;
@@ -30,9 +31,10 @@ extern "C" {
     void __appExit(void);
 }
 
-void fatalLater(Result err) {
+void fatalLater(Result err) 
+{
     Handle srv;
-#ifdef DEBUG
+
     while (R_FAILED(smGetServiceOriginal(&srv, smEncodeName("fatal:u")))) {
         // wait one sec and retry
         svcSleepThread(1000000000L);
@@ -45,9 +47,9 @@ void fatalLater(Result err) {
         u64 cmd_id;
         u64 result;
         u64 unknown;
-    } *raw;
+    } * raw;
 
-    (void*)raw = ipcPrepareHeader(&c, sizeof(*raw));
+    (void *)raw = ipcPrepareHeader(&c, sizeof(*raw));
 
     raw->magic = SFCI_MAGIC;
     raw->cmd_id = 1;
@@ -56,7 +58,6 @@ void fatalLater(Result err) {
 
     ipcDispatch(srv);
     svcCloseHandle(srv);
-#endif
     (void)err;
     svcExitProcess();
     __builtin_unreachable();
@@ -64,16 +65,17 @@ void fatalLater(Result err) {
 
 
 // we override libnx internals to do a minimal init
-void __libnx_initheap(void) {
-	void*  addr = nx_inner_heap;
+void __libnx_initheap(void)
+{
+	void *addr = nx_inner_heap;
 	size_t size = nx_inner_heap_size;
 
 	/* Newlib */
-	extern char* fake_heap_start;
-	extern char* fake_heap_end;
+	extern char *fake_heap_start;
+	extern char *fake_heap_end;
 
-	fake_heap_start = (char*)addr;
-	fake_heap_end   = (char*)addr + size;
+	fake_heap_start = (char *)addr;
+	fake_heap_end = (char *)addr + size;
 }
 
 void registerFspLr()
@@ -121,7 +123,7 @@ void __appExit(void)
     audoutExit();
 }
 
-Result socket_init(int* server_fd, sockaddr_in* address)
+Result socket_init(int *server_fd, sockaddr_in *address)
 {
     int yes = 1;
     Result rc;
@@ -144,10 +146,10 @@ Result socket_init(int* server_fd, sockaddr_in* address)
     }
     address->sin_family = AF_INET;
     address->sin_addr.s_addr = INADDR_ANY;
-    address->sin_port = htons( PORT );
+    address->sin_port = htons(PORT);
       
     //attach socket to port
-    if (bind(*server_fd, (struct sockaddr *)address, sizeof(*address))<0)
+    if (bind(*server_fd, (struct sockaddr *)address, sizeof(*address)) < 0)
     {
         return -1;
     }
@@ -165,34 +167,34 @@ int main(int argc, char **argv)
     struct sockaddr_in address;
     int addrlen = sizeof(address);
     
-    //init socket
-    if (R_FAILED(socket_init(&server_fd, &address)))
-    {
-        fatalSimple(MAKERESULT(Module_Discord, Error_InitSocket));
-    }
+	rc = socketInitializeDefault();
+    if(R_FAILED(rc))
+        fatalLater(rc);
+	
+	while (true)
+	{
     
-	//waiting for connection
-        if (listen(server_fd, 3) < 0)
+        //init socket
+        while (R_FAILED(socket_init(&server_fd, &address)))
         {
-            fatalSimple(MAKERESULT(Module_Discord, Error_Listen));
+            svcSleepThread(1e+9L);
         }
-    while(true)
-    {
+		
+		//waiting for connection
+        if (listen(server_fd, 3) < 0) 
+        {
+            close(server_fd);
+            continue;
+        }
+		while ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t *)&addrlen)) >= 0)
+        {
+            StartReceiving(new_socket);
+            close(new_socket);
+        }
+		
+        close(server_fd);
+    }
 
-        //Accepting;
-        if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen))<0)
-        {
-            if (listen(server_fd, 3) < 0)
-        {
-            fatalSimple(MAKERESULT(Module_Discord, Error_Listen));
-        }
-        }
-        
-        StartReceiving(new_socket);
-        close(new_socket);
-    }
-    
-    
     socketExit();
     return 0;
 }
