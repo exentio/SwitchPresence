@@ -163,6 +163,7 @@ int main(int argc, char **argv)
     int server_fd, new_socket;
     struct sockaddr_in address;
     int addrlen = sizeof(address);
+	Result rc;
     
 	rc = socketInitializeDefault();
     if(R_FAILED(rc))
