@@ -35,14 +35,16 @@ void fatalLater(Result err)
 {
     Handle srv;
 
-    while (R_FAILED(smGetServiceOriginal(&srv, smEncodeName("fatal:u")))) {
+    while (R_FAILED(smGetServiceOriginal(&srv, smEncodeName("fatal:u")))) 
+	{
         // wait one sec and retry
         svcSleepThread(1000000000L);
     }
     IpcCommand c;
     ipcInitialize(&c);
     ipcSendPid(&c);
-    struct {
+    struct 
+	{
         u64 magic;
         u64 cmd_id;
         u64 result;
@@ -128,11 +130,6 @@ Result socket_init(int *server_fd, sockaddr_in *address)
     int yes = 1;
     Result rc;
     
-    rc = socketInitializeDefault();
-    if(rc != 0)
-    {
-        return rc;
-    }
     // create socket
     if ((*server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0)
     {
