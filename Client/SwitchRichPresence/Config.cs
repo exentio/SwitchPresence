@@ -13,7 +13,7 @@ namespace SwitchRichPresence
         public bool ShowTimer { get; set; } = true;
         public string SIcon { get; set; } = "";
         public string LIcon { get; set; } = "";
-        public string Detail { get; set; } = "";
+       // public string Detail { get; set; } = "";
 
         public Config()
         {
@@ -49,9 +49,9 @@ namespace SwitchRichPresence
                                 case "large_icon":
                                     LIcon = parts[1];
                                     break;
-                                case "detail":
-                                    Detail = parts[1];
-                                    break;
+                                //case "detail":
+                                    //Detail = parts[1];
+                                    //break;
                             }
                         }
                         catch { }
@@ -69,7 +69,7 @@ namespace SwitchRichPresence
                 "show_timer=" + (ShowTimer ? "true" : "false"),
                 "sicon=" +  SIcon,
                 "bicon=" + LIcon,
-                "detail=" + Detail,
+                //"detail=" + Detail,
             };
 
             File.WriteAllLines(CONFIG_PATH, lines);
