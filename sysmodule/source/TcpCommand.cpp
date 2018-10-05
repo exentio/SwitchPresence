@@ -100,7 +100,7 @@ void SendAppList(int socket)
     NsApplicationRecord* list = new NsApplicationRecord[255];
     int count = 0;
     
-    rc = nsListApplicationRecord(list, sizeof(NsApplicationRecord)*255, &count);
+    rc = nsListApplicationRecord(list, sizeof(NsApplicationRecord)*255, 0,(size_t*) &count);
     if (R_FAILED(rc))
     {
         fatalSimple(MAKERESULT(Module_Discord, Error_ListAppFailed));

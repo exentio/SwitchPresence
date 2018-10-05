@@ -31,27 +31,34 @@ extern "C"
     void __appExit(void);
 }
 
-void fatalLater(Result err) 
+
+struct fatalLaterIpc
+{
+    u64 magic;
+    u64 cmd_id;
+    u64 result;
+    u64 unknown;
+};
+
+
+void fatalLater(Result err)
 {
     Handle srv;
 
-    while (R_FAILED(smGetServiceOriginal(&srv, smEncodeName("fatal:u")))) 
-	{
+    while (R_FAILED(smGetServiceOriginal(&srv, smEncodeName("fatal:u"))))
+    {
         // wait one sec and retry
         svcSleepThread(1000000000L);
     }
+
+    // fatal is here time, fatal like a boss
     IpcCommand c;
     ipcInitialize(&c);
     ipcSendPid(&c);
-    struct 
-	{
-        u64 magic;
-        u64 cmd_id;
-        u64 result;
-        u64 unknown;
-    } * raw;
 
-    (void *)raw = ipcPrepareHeader(&c, sizeof(*raw));
+    struct fatalLaterIpc* raw;
+
+    raw = (struct fatalLaterIpc*) ipcPrepareHeader(&c, sizeof(*raw));
 
     raw->magic = SFCI_MAGIC;
     raw->cmd_id = 1;
@@ -60,11 +67,7 @@ void fatalLater(Result err)
 
     ipcDispatch(srv);
     svcCloseHandle(srv);
-    (void)err;
-    svcExitProcess();
-    __builtin_unreachable();
 }
-
 
 // we override libnx internals to do a minimal init
 void __libnx_initheap(void)
