@@ -257,6 +257,7 @@
             this.warn.TabIndex = 20;
             this.warn.Text = "Abort connection before putting console to sleep!\r\n";
             this.warn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.warn.Visible = false;
             this.warn.Click += new System.EventHandler(this.label7_Click);
             // 
             // MainForm
