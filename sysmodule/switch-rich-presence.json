@@ -1,5 +1,5 @@
 {
-	"name": "switchpresence",
+	"name": "sys-discord",
 	"title_id": "0x420000000000001E",
 	"main_thread_stack_size": "0x20000",
 	"main_thread_priority": 49,
