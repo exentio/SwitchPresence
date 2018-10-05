@@ -96,7 +96,7 @@ namespace SwitchRichPresence
                 ShowUser = checkBox_showUser.Checked,
                 SIcon = textBox_overridesicon.Text,
                 LIcon = textBox_overridelicon.Text,
-                //Detail = textBox_overridedetail.Text
+                Detail = textBox_overridedetail.Text
             };
             config.Save();
         }
@@ -110,7 +110,7 @@ namespace SwitchRichPresence
             checkBox_showUser.Checked = config.ShowUser;
             textBox_overridesicon.Text = config.SIcon;
             textBox_overridelicon.Text = config.LIcon;
-            //textBox_overridedetail.Text = config.Detail;
+            textBox_overridedetail.Text = config.Detail;
         }
 
         public MainForm()
@@ -166,6 +166,7 @@ namespace SwitchRichPresence
 
                 SaveConfig();
 
+                AFS.Visible = true;
                 warn.Visible = true;
                 textBox_ip.Enabled = false;
                 textBox_clientId.Enabled = false;
@@ -187,6 +188,8 @@ namespace SwitchRichPresence
             }
             else //abort
             {
+                AFS.Visible = false;
+                AFS.Checked = false;
                 warn.Visible = false;
                 textBox_ip.Enabled = true;
                 textBox_clientId.Enabled = true;

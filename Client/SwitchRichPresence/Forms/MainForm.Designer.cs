@@ -270,6 +270,7 @@
             this.AFS.TabIndex = 21;
             this.AFS.Text = "Away from swtich";
             this.AFS.UseVisualStyleBackColor = true;
+            this.AFS.Visible = false;
             this.AFS.CheckedChanged += new System.EventHandler(this.AFS_CheckedChanged);
             // 
             // MainForm

@@ -1,10 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace SwitchRichPresence
 {
+
     public class Config
     {
+
+        public static string Base64Decode(string str)
+        {
+            return Encoding.UTF8.GetString(Convert.FromBase64String(str));
+        }
+
+        public static string Base64Encode(string plainText)
+        {
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
+            return System.Convert.ToBase64String(plainTextBytes);
+        }
+
         private const string CONFIG_PATH = "config.txt";
 
         public string ClientID { get; set; } = "464720851976060940";
@@ -13,7 +28,7 @@ namespace SwitchRichPresence
         public bool ShowTimer { get; set; } = true;
         public string SIcon { get; set; } = "";
         public string LIcon { get; set; } = "";
-       // public string Detail { get; set; } = "";
+        public string Detail { get; set; } = "";
 
         public Config()
         {
@@ -43,15 +58,15 @@ namespace SwitchRichPresence
                                 case "show_timer":
                                     ShowTimer = bool.Parse(parts[1]);
                                     break;
-                                case "small_icon":
+                                case "sicon":
                                     SIcon = parts[1];
                                     break;
-                                case "large_icon":
+                                case "licon":
                                     LIcon = parts[1];
                                     break;
-                                //case "detail":
-                                    //Detail = parts[1];
-                                    //break;
+                                case "detail":
+                                    Detail = Base64Decode(parts[1]);
+                                    break;
                             }
                         }
                         catch { }
@@ -68,8 +83,8 @@ namespace SwitchRichPresence
                 "show_user=" + (ShowUser ? "true" : "false"),
                 "show_timer=" + (ShowTimer ? "true" : "false"),
                 "sicon=" +  SIcon,
-                "bicon=" + LIcon,
-                //"detail=" + Detail,
+                "licon=" + LIcon,
+                "detail=" + Base64Encode(Detail),
             };
 
             File.WriteAllLines(CONFIG_PATH, lines);
