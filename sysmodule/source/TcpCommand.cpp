@@ -13,7 +13,7 @@ void SendRaw(int socket, void* buff, size_t size)
     size_t total = 0;
     while (total < size)
     {
-        size_t count = send(socket, (char*)buff + total, size - total, 0);
+        ssize_t count = send(socket, (char*)buff + total, size - total, 0);
         if (count <= 0)
             fatalSimple(MAKERESULT(Module_Discord, Error_SendData));
         total += count;
@@ -24,7 +24,7 @@ void ReceiveRaw(int socket, void* buff, size_t size)
     size_t total = 0;
     while (total < size)
     {
-        size_t count = recv(socket, (char*)buff + total, size - total, 0);
+        ssize_t count = recv(socket, (char*)buff + total, size - total, 0);
         if (count <= 0)
             fatalSimple(MAKERESULT(Module_Discord, Error_RecData));
         total += count;
