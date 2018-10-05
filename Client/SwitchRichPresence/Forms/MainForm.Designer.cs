@@ -50,6 +50,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.textBox_overridedetail = new System.Windows.Forms.TextBox();
             this.warn = new System.Windows.Forms.Label();
+            this.AFS = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_icon)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -251,7 +252,7 @@
             this.warn.AutoSize = true;
             this.warn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.warn.ForeColor = System.Drawing.Color.Red;
-            this.warn.Location = new System.Drawing.Point(11, 115);
+            this.warn.Location = new System.Drawing.Point(11, 144);
             this.warn.Name = "warn";
             this.warn.Size = new System.Drawing.Size(320, 15);
             this.warn.TabIndex = 20;
@@ -260,11 +261,23 @@
             this.warn.Visible = false;
             this.warn.Click += new System.EventHandler(this.label7_Click);
             // 
+            // AFS
+            // 
+            this.AFS.AutoSize = true;
+            this.AFS.Location = new System.Drawing.Point(120, 118);
+            this.AFS.Name = "AFS";
+            this.AFS.Size = new System.Drawing.Size(108, 17);
+            this.AFS.TabIndex = 21;
+            this.AFS.Text = "Away from swtich";
+            this.AFS.UseVisualStyleBackColor = true;
+            this.AFS.CheckedChanged += new System.EventHandler(this.AFS_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(338, 440);
+            this.Controls.Add(this.AFS);
             this.Controls.Add(this.warn);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox_overridedetail);
@@ -323,6 +336,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox_overridedetail;
         private System.Windows.Forms.Label warn;
+        private System.Windows.Forms.CheckBox AFS;
     }
 }
 

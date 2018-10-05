@@ -25,29 +25,32 @@ namespace SwitchRichPresence
         {
             bool newTitle = (CurrentPlaying != null && CurrentPlaying.TitleID != CurrentTid);
 
-            if (CurrentPlaying != null)
+            if (!AFS.Checked)
             {
-                if (newTitle)
+                if (CurrentPlaying != null)
                 {
-                    if (pictureBox_icon.Image != null)
-                        pictureBox_icon.Image.Dispose();
-                    pictureBox_icon.Image = new Bitmap(CurrentPlaying.Icon);
+                    if (newTitle)
+                    {
+                        if (pictureBox_icon.Image != null)
+                            pictureBox_icon.Image.Dispose();
+                        pictureBox_icon.Image = new Bitmap(CurrentPlaying.Icon);
 
-                    startTime = (long)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-                    CurrentTid = CurrentPlaying.TitleID;
+                        startTime = (long)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                        CurrentTid = CurrentPlaying.TitleID;
 
                         discord.presence = new DiscordRpc.RichPresence()
-                    {
-                        details = "Playing " + CurrentPlaying.Metadata.GetLanguage().ApplicationName,
-                        smallImageKey = "icon",
-                        smallImageText = "SwitchPresence Sysmodule",
-                        largeImageKey = CurrentPlaying.TitleID.ToString("x16"),
-                        largeImageText = CurrentPlaying.Metadata.GetLanguage().ApplicationName,
-                        startTimestamp = startTime,
-                    };
-                    OverrideDetail();
-                    OverrideLargeIcon();
-                    OverrideSmallIcon();
+                        {
+                            details = "Playing " + CurrentPlaying.Metadata.GetLanguage().ApplicationName,
+                            smallImageKey = "icon",
+                            smallImageText = "SwitchPresence Sysmodule",
+                            largeImageKey = CurrentPlaying.TitleID.ToString("x16"),
+                            largeImageText = CurrentPlaying.Metadata.GetLanguage().ApplicationName,
+                            startTimestamp = startTime,
+                        };
+                        OverrideDetail();
+                        OverrideLargeIcon();
+                        OverrideSmallIcon();
+                    }
                 }
                     //update user
                     checkBox_showUser_CheckedChanged(null, null);
@@ -310,6 +313,11 @@ namespace SwitchRichPresence
         }
 
         private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AFS_CheckedChanged(object sender, EventArgs e)
         {
 
         }
