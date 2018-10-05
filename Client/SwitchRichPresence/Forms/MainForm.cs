@@ -25,9 +25,7 @@ namespace SwitchRichPresence
         {
             bool newTitle = (CurrentPlaying != null && CurrentPlaying.TitleID != CurrentTid);
 
-            if (!AFS.Checked)
-            {
-                if (CurrentPlaying != null)
+                if (CurrentPlaying != null && !AFS.Checked)
                 {
                     if (newTitle)
                     {
@@ -51,7 +49,7 @@ namespace SwitchRichPresence
                         OverrideLargeIcon();
                         OverrideSmallIcon();
                     }
-                }
+                
                     //update user
                     checkBox_showUser_CheckedChanged(null, null);
                 //update time
