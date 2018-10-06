@@ -71,7 +71,6 @@
             this.textBox_ip.Name = "textBox_ip";
             this.textBox_ip.Size = new System.Drawing.Size(118, 20);
             this.textBox_ip.TabIndex = 1;
-            this.textBox_ip.TextChanged += new System.EventHandler(this.textBox_ip_TextChanged);
             // 
             // label1
             // 
@@ -174,7 +173,6 @@
             this.textBox_overridesicon.Name = "textBox_overridesicon";
             this.textBox_overridesicon.Size = new System.Drawing.Size(118, 20);
             this.textBox_overridesicon.TabIndex = 12;
-            this.textBox_overridesicon.TextChanged += new System.EventHandler(this.textBox_overridesicon_TextChanged);
             // 
             // label4
             // 
@@ -192,7 +190,6 @@
             this.textBox_overridelicon.Name = "textBox_overridelicon";
             this.textBox_overridelicon.Size = new System.Drawing.Size(118, 20);
             this.textBox_overridelicon.TabIndex = 14;
-            this.textBox_overridelicon.TextChanged += new System.EventHandler(this.textBox_overridebicon_TextChanged);
             // 
             // label5
             // 
@@ -259,7 +256,6 @@
             this.warn.Text = "Abort connection before putting console to sleep!\r\n";
             this.warn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.warn.Visible = false;
-            this.warn.Click += new System.EventHandler(this.label7_Click);
             // 
             // AFS
             // 
@@ -271,7 +267,6 @@
             this.AFS.Text = "Away from swtich";
             this.AFS.UseVisualStyleBackColor = true;
             this.AFS.Visible = false;
-            this.AFS.CheckedChanged += new System.EventHandler(this.AFS_CheckedChanged);
             // 
             // MainForm
             // 
@@ -305,7 +300,6 @@
             this.Name = "MainForm";
             this.Text = "SwitchPresence Client";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_icon)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

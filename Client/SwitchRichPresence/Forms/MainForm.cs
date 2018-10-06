@@ -38,10 +38,10 @@ namespace SwitchRichPresence
 
                         discord.presence = new DiscordRpc.RichPresence()
                         {
-                            details = "Playing " + CurrentPlaying.Metadata.GetLanguage().ApplicationName,
+                            details = $"Playing {CurrentPlaying.Metadata.GetLanguage().ApplicationName}",
                             smallImageKey = "icon",
                             smallImageText = "SwitchPresence Sysmodule",
-                            largeImageKey = CurrentPlaying.TitleID.ToString("x16"),
+                            largeImageKey = $"{CurrentPlaying.TitleID:x16}",
                             largeImageText = CurrentPlaying.Metadata.GetLanguage().ApplicationName,
                             startTimestamp = startTime,
                         };
@@ -56,7 +56,7 @@ namespace SwitchRichPresence
                 checkBox_showTime_CheckedChanged(null, null);
 
                 //layout
-                label_game.Text = string.Format("Game : {0}\r\nTitle ID : {1}\r\nVersion : {2}\r\n{3}",
+                label_game.Text = string.Format("Game: {0}\nTitle ID: {1}\nVersion: {2}\n{3}",
                     CurrentPlaying.Metadata.GetLanguage().ApplicationName,
                     CurrentPlaying.Metadata.TitleId,
                     CurrentPlaying.Metadata.AppVersion,
@@ -73,11 +73,11 @@ namespace SwitchRichPresence
                 discord.presence = new DiscordRpc.RichPresence()
                 {
                     details = "Not Playing",
-                    state = "",
-                    smallImageKey = "",
-                    smallImageText = "",
-                    largeImageKey = "",
-                    largeImageText = "",
+                    state = null,
+                    smallImageKey = null,
+                    smallImageText = null,
+                    largeImageKey = null,
+                    largeImageText = null,
                 };
                 label_game.Text = "Not playing";
                 CurrentTid = 0;
@@ -155,7 +155,7 @@ namespace SwitchRichPresence
                 }
                 catch (SocketException)
                 {
-                    MessageBox.Show("No switch found !\r\nMake sure that the ip you entered is correct.");
+                    MessageBox.Show("No switch found!\nMake sure that the IP address you entered is correct.");
                     return;
                 }
                 catch (ServerVersionException ex)
@@ -214,7 +214,7 @@ namespace SwitchRichPresence
                 {
                     using (Bitmap bmp = new Bitmap(app.Icon, 512, 512))
                     {
-                        bmp.Save(fbox.SelectedPath + @"\" + app.TitleID.ToString("X16") + ".png");
+                        bmp.Save(fbox.SelectedPath + $@"\{app.TitleID:x16}.png");
                     }
                 }
 
@@ -230,10 +230,10 @@ namespace SwitchRichPresence
                 if (checkBox_showUser.Checked)
                     discord.presence.state = (CurrentUser == null)
                         ? "No user selected."
-                        : "User : " + CurrentUser;
+                        : $"User: {CurrentUser}";
 
                 else
-                    discord.presence.state = "";
+                    discord.presence.state = null;
 
                 DiscordRpc.UpdatePresence(discord.presence);
             }
@@ -243,7 +243,7 @@ namespace SwitchRichPresence
         {
             if (string.IsNullOrWhiteSpace(textBox_overridedetail.Text) && (CurrentPlaying != null))
             {
-                discord.presence.details = "Playing " + CurrentPlaying.Metadata.GetLanguage().ApplicationName;
+                discord.presence.details = $"Playing {CurrentPlaying.Metadata.GetLanguage().ApplicationName}";
             }
             else if (CurrentPlaying != null)
             {
@@ -269,7 +269,7 @@ namespace SwitchRichPresence
         {
             if (string.IsNullOrWhiteSpace(textBox_overridelicon.Text) && (CurrentPlaying != null))
             {
-                discord.presence.largeImageKey = CurrentPlaying.TitleID.ToString("x16");
+                discord.presence.largeImageKey = $"{CurrentPlaying.TitleID:x16}";
             }
             else if (CurrentPlaying != null)
             {
@@ -292,36 +292,5 @@ namespace SwitchRichPresence
             AboutForm form = new AboutForm();
             form.ShowDialog();
         }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox_ip_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox_overridebicon_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox_overridesicon_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void AFS_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
     }
-
  }
