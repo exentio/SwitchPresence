@@ -41,7 +41,8 @@ namespace SwitchRichPresence
                     {
                         try
                         {
-                            switch (parts[0].ToLower())
+                            parts[1] = parts[1].TrimStart(' ');
+                            switch (parts[0].TrimEnd(' ').ToLower())
                             {
                                 case "client_id":
                                     ClientID = parts[1];
