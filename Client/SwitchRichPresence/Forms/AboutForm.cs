@@ -29,5 +29,20 @@ namespace SwitchPresence
         {
             this.Close();
         }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://twitter.com/Sun_Courier");
+        }
+
+        private void SGit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/SunTheCourier");
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://www.youtube.com/channel/UCuhdQw_BibXDqPimSQn4iQg");
+        }
     }
 }
