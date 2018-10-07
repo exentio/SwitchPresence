@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{88FC8B2F-B105-4700-8767-0F04B08FED5E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>SwitchRichPresence</RootNamespace>
-    <AssemblyName>SwitchRichPresence</AssemblyName>
+    <RootNamespace>SwitchPresence</RootNamespace>
+    <AssemblyName>SwitchPresence</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -96,6 +96,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

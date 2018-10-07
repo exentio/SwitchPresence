@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace SwitchRichPresence
+namespace SwitchPresence
 {
     public class Config
     {

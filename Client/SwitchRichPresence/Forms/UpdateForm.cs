@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace SwitchRichPresence
+namespace SwitchPresence
 {
     public partial class UpdateForm : Form
     {

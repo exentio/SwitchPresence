@@ -1,4 +1,4 @@
-﻿namespace SwitchRichPresence
+﻿namespace SwitchPresence
 {
     using System;
     using System.Collections.Generic;

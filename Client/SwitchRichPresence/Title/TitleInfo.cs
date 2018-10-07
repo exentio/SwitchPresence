@@ -3,7 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Net.Sockets;
 
-namespace SwitchRichPresence
+namespace SwitchPresence
 {
     public class ApplicationRecord
     {

@@ -1,4 +1,4 @@
-﻿namespace SwitchRichPresence
+﻿namespace SwitchPresence
 {
     partial class UpdateForm
     {

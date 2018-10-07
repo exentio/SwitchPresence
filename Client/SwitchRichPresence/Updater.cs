@@ -2,7 +2,7 @@
 using System.Net;
 using System.Text;
 
-namespace SwitchRichPresence
+namespace SwitchPresence
 {
     public class Updater
     {

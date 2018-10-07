@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Sockets;
 
-namespace SwitchRichPresence
+namespace SwitchPresence
 {
     [Serializable]
     public class TcpCommandException : Exception

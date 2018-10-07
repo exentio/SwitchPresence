@@ -5,7 +5,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace SwitchRichPresence
+namespace SwitchPresence
 {
     public partial class MainForm : Form
     {

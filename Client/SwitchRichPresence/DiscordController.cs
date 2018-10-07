@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SwitchRichPresence
+namespace SwitchPresence
 {
     public class DiscordController
     {
