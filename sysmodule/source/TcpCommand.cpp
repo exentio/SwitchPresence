@@ -184,6 +184,7 @@ void SendCurrentApp(int socket)
                     continue;
                 }
                 else break;
+				delete d;
             }
         }
     }
