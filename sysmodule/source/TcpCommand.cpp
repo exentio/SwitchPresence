@@ -184,7 +184,6 @@ void SendCurrentApp(int socket)
                     continue;
                 }
                 else break;
-				delete d;
             }
         }
     }
@@ -193,6 +192,7 @@ exit_send_current:
     SendBuffer(socket, &tid, 8);
     
     delete[] pids;
+	delete d;
 }
 
 void SendVersion(int socket)
