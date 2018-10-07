@@ -28,7 +28,7 @@ namespace SwitchRichPresence
         public SwitchApps(string ip)
         {
             if (!IPAddress.TryParse(ip, out IPAddress addr))
-                throw new Exception(string.Format("Invalid IP address : \"{0}\"", ip));
+                throw new Exception($"Invalid IP address: \"{ip}\"");
 
             client = new Socket(SocketType.Stream, ProtocolType.Tcp);
             client.Connect(addr, 0xCAFE);
@@ -38,10 +38,12 @@ namespace SwitchRichPresence
             {
                 Dispose();
 
+                var VerExceptionText = "Client and server versions don't match: The client is outdated.\nPlease download the latest update of both client and server.";
+
                 if (ver > CLIENT_VERSION)
-                    throw new ServerVersionException("Client and server versions don't match : The client is outdated.\r\nPlease download the latest update of both client and server.");
+                    throw new ServerVersionException(VerExceptionText);
                 else
-                    throw new ServerVersionException("Client and server versions don't match : The server is outdated.\r\nPlease download the latest update of both client and server.");
+                    throw new ServerVersionException(VerExceptionText);
             }
 
             GetApplicationList();

@@ -31,6 +31,8 @@ namespace SwitchRichPresence
             Disconnect      = 0xFF,
         }
 
+        public const string DataErr = "Error while receiving data!";
+
         private static byte[] ReceiveRaw(Socket client, int size)
         {
             byte[] buffer = new byte[size];
@@ -40,7 +42,7 @@ namespace SwitchRichPresence
             {
                 int count = client.Receive(buffer, total, buffer.Length - total, SocketFlags.None);
                 if (count < 0)
-                    throw new Exception("Error while receiving data !");
+                    throw new Exception(DataErr);
                 total += count;
             }
 
@@ -53,7 +55,7 @@ namespace SwitchRichPresence
             {
                 int count = client.Send(data, total, data.Length - total, SocketFlags.None);
                 if (count < 0)
-                    throw new Exception("Error while receiving data !");
+                    throw new Exception(DataErr);
                 total += count;
             }
         }
@@ -71,7 +73,7 @@ namespace SwitchRichPresence
             uint magic = BitConverter.ToUInt32(buffer, 0);
 
             if ((magic & 0xFFFFFF00) != SRV_MAGIC)
-                throw new TcpCommandException(string.Format("Invalid Response magic : 0x{0} instead of 0x{1}", (magic & 0x00FFFFFF).ToString("X"), SRV_MAGIC.ToString("X")));
+                throw new TcpCommandException($"Invalid Response magic: 0x{magic & 0xFFFFFF:X} instead of 0x{SRV_MAGIC:X}");
         }
         
         //header + data
@@ -82,7 +84,7 @@ namespace SwitchRichPresence
             //validate command
             uint magic = BitConverter.ToUInt32(header, 0);
             if ((magic & 0xFFFFFF00) != SRV_MAGIC)
-                throw new TcpCommandException(string.Format("Invalid Response magic : 0x{0} instead of 0x{1}", ((magic & 0xFFFFFF00)>>8).ToString("X"), (SRV_MAGIC>>8).ToString("X")));
+                throw new TcpCommandException($"Invalid Response magic: 0x{(magic & 0xFFFFFF00) >> 8:X} instead of 0x{SRV_MAGIC >> 8:X}");
 
             byte[] data = ReceiveRaw(client, size);
 
