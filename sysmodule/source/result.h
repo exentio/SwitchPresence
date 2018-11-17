@@ -2,7 +2,7 @@
 
 enum
 {
-    Module_Discord = 789,
+    Module_Discord = 311,
 };
 
 enum
