@@ -90,7 +90,7 @@
             this.button_connect.TabIndex = 3;
             this.button_connect.Text = "Connect";
             this.button_connect.UseVisualStyleBackColor = true;
-            this.button_connect.Click += new System.EventHandler(this.button_connect_Click);
+            this.button_connect.Click += new System.EventHandler(this.Button_connect_Click);
             // 
             // label2
             // 
@@ -123,7 +123,7 @@
             this.checkBox_showUser.TabIndex = 7;
             this.checkBox_showUser.Text = "Show selected user";
             this.checkBox_showUser.UseVisualStyleBackColor = true;
-            this.checkBox_showUser.CheckedChanged += new System.EventHandler(this.checkBox_showUser_CheckedChanged);
+            this.checkBox_showUser.CheckedChanged += new System.EventHandler(this.CheckBox_showUser_CheckedChanged);
             // 
             // checkBox_showTime
             // 
@@ -136,7 +136,7 @@
             this.checkBox_showTime.TabIndex = 8;
             this.checkBox_showTime.Text = "Show timer";
             this.checkBox_showTime.UseVisualStyleBackColor = true;
-            this.checkBox_showTime.CheckedChanged += new System.EventHandler(this.checkBox_showTime_CheckedChanged);
+            this.checkBox_showTime.CheckedChanged += new System.EventHandler(this.CheckBox_showTime_CheckedChanged);
             // 
             // linkLabel1
             // 
@@ -148,7 +148,7 @@
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "About";
             this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // label3
             // 
@@ -215,7 +215,7 @@
             this.exportIconsToolStripMenuItem.Name = "exportIconsToolStripMenuItem";
             this.exportIconsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.exportIconsToolStripMenuItem.Text = "Export icons";
-            this.exportIconsToolStripMenuItem.Click += new System.EventHandler(this.exportIconsToolStripMenuItem_Click);
+            this.exportIconsToolStripMenuItem.Click += new System.EventHandler(this.ExportIconsToolStripMenuItem_Click);
             // 
             // menuStrip1
             // 

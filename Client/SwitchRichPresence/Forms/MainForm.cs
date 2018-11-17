@@ -51,12 +51,13 @@ namespace SwitchPresence
                     }
                 
                     //update user
-                    checkBox_showUser_CheckedChanged(null, null);
-                //update time
-                checkBox_showTime_CheckedChanged(null, null);
+                    CheckBox_showUser_CheckedChanged(null, null);
+                
+                    //update time
+                    CheckBox_showTime_CheckedChanged(null, null);
 
-                //layout
-                label_game.Text = string.Format("Game: {0}\nTitle ID: {1}\nVersion: {2}\n{3}",
+                    //layout
+                    label_game.Text = string.Format("Game: {0}\nTitle ID: {1}\nVersion: {2}\n{3}",
                     CurrentPlaying.Metadata.GetLanguage().ApplicationName,
                     CurrentPlaying.Metadata.TitleId,
                     CurrentPlaying.Metadata.AppVersion,
@@ -139,13 +140,13 @@ namespace SwitchPresence
             if (button_connect.Text != "Connect")
             {
                 //close safely
-                button_connect_Click(null, null);
+                Button_connect_Click(null, null);
             }
 
             DiscordRpc.Shutdown();
         }
 
-        private void button_connect_Click(object sender, EventArgs e)
+        private void Button_connect_Click(object sender, EventArgs e)
         {
             if (button_connect.Text == "Connect")
             {
@@ -173,7 +174,8 @@ namespace SwitchPresence
                 utilsToolStripMenuItem.Visible = true;
                 button_connect.Text = "Abort";
 
-                UpdatePlaying = new Thread(() => {
+                UpdatePlaying = new Thread(() =>
+                {
                     while (true)
                     {
                         CurrentPlaying = apps.GetPlaying();
@@ -182,8 +184,10 @@ namespace SwitchPresence
 
                         Thread.Sleep(1000 * 2);
                     }
-                });
-                UpdatePlaying.IsBackground = true;
+                })
+                {
+                    IsBackground = true
+                };
                 UpdatePlaying.Start();
             }
             else //abort
@@ -205,7 +209,7 @@ namespace SwitchPresence
             }
         }
 
-        private void exportIconsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExportIconsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FolderSelectDialog fbox = new FolderSelectDialog();
             if (fbox.ShowDialog() == DialogResult.OK)
@@ -222,7 +226,7 @@ namespace SwitchPresence
             }
         }
 
-        private void checkBox_showUser_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox_showUser_CheckedChanged(object sender, EventArgs e)
         {
             if (apps != null)
             {
@@ -278,7 +282,7 @@ namespace SwitchPresence
             SaveConfig();
         }
 
-        private void checkBox_showTime_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox_showTime_CheckedChanged(object sender, EventArgs e)
         {
             if (apps != null)
             {
@@ -287,7 +291,7 @@ namespace SwitchPresence
             }
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             AboutForm form = new AboutForm();
             form.ShowDialog();
