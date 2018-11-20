@@ -130,9 +130,9 @@ namespace SwitchPresence
             discord.Initialize(appID);
             DiscordRpc.UpdatePresence(discord.presence);
 
-            textBox_overridedetail.TextChanged += (o, e) => OverrideDetail();
-            textBox_overridelicon.TextChanged += (o, e) => OverrideLargeIcon();
-            textBox_overridesicon.TextChanged += (o, e) => OverrideSmallIcon();
+            textBox_overridedetail.Validated += (o, e) => OverrideDetail();
+            textBox_overridelicon.Validated += (o, e) => OverrideLargeIcon();
+            textBox_overridesicon.Validated += (o, e) => OverrideSmallIcon();
 
         }
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
