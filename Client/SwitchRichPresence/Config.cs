@@ -6,17 +6,6 @@ namespace SwitchPresence
 {
     public class Config
     {
-        public static string Base64Decode(string str)
-        {
-            return Encoding.UTF8.GetString(Convert.FromBase64String(str));
-        }
-
-        public static string Base64Encode(string plainText)
-        {
-            var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
-            return Convert.ToBase64String(plainTextBytes);
-        }
-
         private const string CONFIG_PATH = "config.txt";
 
         public string ClientID { get; set; } = "464720851976060940";
