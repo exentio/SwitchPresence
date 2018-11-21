@@ -264,7 +264,7 @@
             this.AFS.Name = "AFS";
             this.AFS.Size = new System.Drawing.Size(108, 17);
             this.AFS.TabIndex = 21;
-            this.AFS.Text = "Away from swtich";
+            this.AFS.Text = "Away from switch";
             this.AFS.UseVisualStyleBackColor = true;
             this.AFS.Visible = false;
             // 
