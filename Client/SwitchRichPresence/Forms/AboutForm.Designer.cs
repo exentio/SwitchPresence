@@ -73,7 +73,7 @@
             this.button_ok.TabIndex = 2;
             this.button_ok.Text = "Ok";
             this.button_ok.UseVisualStyleBackColor = true;
-            this.button_ok.Click += new System.EventHandler(this.button_ok_Click);
+            this.button_ok.Click += new System.EventHandler(this.Button_ok_Click);
             // 
             // linkLabel_twitter
             // 
@@ -84,7 +84,7 @@
             this.linkLabel_twitter.TabIndex = 3;
             this.linkLabel_twitter.TabStop = true;
             this.linkLabel_twitter.Text = "Twitter";
-            this.linkLabel_twitter.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_twitter_LinkClicked);
+            this.linkLabel_twitter.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_twitter_LinkClicked);
             // 
             // linkLabel_github
             // 
@@ -95,7 +95,7 @@
             this.linkLabel_github.TabIndex = 4;
             this.linkLabel_github.TabStop = true;
             this.linkLabel_github.Text = "Github";
-            this.linkLabel_github.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_github_LinkClicked);
+            this.linkLabel_github.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_github_LinkClicked);
             // 
             // linkLabel_youtube
             // 
@@ -106,7 +106,7 @@
             this.linkLabel_youtube.TabIndex = 5;
             this.linkLabel_youtube.TabStop = true;
             this.linkLabel_youtube.Text = "Youtube";
-            this.linkLabel_youtube.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_youtube_LinkClicked);
+            this.linkLabel_youtube.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_youtube_LinkClicked);
             // 
             // textBox_discord
             // 
@@ -156,7 +156,7 @@
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Youtube";
             this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // SGit
             // 
@@ -180,7 +180,7 @@
             this.STwit.TabStop = true;
             this.STwit.Text = "Twitter";
             this.STwit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.STwit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
+            this.STwit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel3_LinkClicked);
             // 
             // AboutForm
             // 

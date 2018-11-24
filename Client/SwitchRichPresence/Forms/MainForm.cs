@@ -25,44 +25,44 @@ namespace SwitchPresence
         {
             bool newTitle = (CurrentPlaying != null && CurrentPlaying.TitleID != CurrentTid);
 
-                if (CurrentPlaying != null && !AFS.Checked)
+            if (CurrentPlaying != null && !AFS.Checked)
+            {
+                if (newTitle)
                 {
-                    if (newTitle)
+                    if (pictureBox_icon.Image != null)
+                        pictureBox_icon.Image.Dispose();
+                    pictureBox_icon.Image = new Bitmap(CurrentPlaying.Icon);
+
+                    startTime = (long)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                    CurrentTid = CurrentPlaying.TitleID;
+
+                    discord.presence = new DiscordRpc.RichPresence()
                     {
-                        if (pictureBox_icon.Image != null)
-                            pictureBox_icon.Image.Dispose();
-                        pictureBox_icon.Image = new Bitmap(CurrentPlaying.Icon);
+                        details = $"Playing {CurrentPlaying.Metadata.GetLanguage().ApplicationName}",
+                        smallImageKey = "icon",
+                        smallImageText = "SwitchPresence Sysmodule",
+                        largeImageKey = $"{CurrentPlaying.TitleID:x16}",
+                        largeImageText = CurrentPlaying.Metadata.GetLanguage().ApplicationName,
+                        startTimestamp = startTime,
+                    };
+                    OverrideDetail();
+                    OverrideLargeIcon();
+                    OverrideSmallIcon();
+                }
 
-                        startTime = (long)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-                        CurrentTid = CurrentPlaying.TitleID;
+                //update user
+                CheckBox_showUser_CheckedChanged(null, null);
 
-                        discord.presence = new DiscordRpc.RichPresence()
-                        {
-                            details = $"Playing {CurrentPlaying.Metadata.GetLanguage().ApplicationName}",
-                            smallImageKey = "icon",
-                            smallImageText = "SwitchPresence Sysmodule",
-                            largeImageKey = $"{CurrentPlaying.TitleID:x16}",
-                            largeImageText = CurrentPlaying.Metadata.GetLanguage().ApplicationName,
-                            startTimestamp = startTime,
-                        };
-                        OverrideDetail();
-                        OverrideLargeIcon();
-                        OverrideSmallIcon();
-                    }
-                
-                    //update user
-                    CheckBox_showUser_CheckedChanged(null, null);
-                
-                    //update time
-                    CheckBox_showTime_CheckedChanged(null, null);
+                //update time
+                CheckBox_showTime_CheckedChanged(null, null);
 
-                    //layout
-                    label_game.Text = string.Format("Game: {0}\nTitle ID: {1}\nVersion: {2}\n{3}",
-                    CurrentPlaying.Metadata.GetLanguage().ApplicationName,
-                    CurrentPlaying.Metadata.TitleId,
-                    CurrentPlaying.Metadata.AppVersion,
-                    discord.presence.state
-                    );
+                //layout
+                label_game.Text = string.Format("Game: {0}\nTitle ID: {1}\nVersion: {2}\n{3}",
+                CurrentPlaying.Metadata.GetLanguage().ApplicationName,
+                CurrentPlaying.Metadata.TitleId,
+                CurrentPlaying.Metadata.AppVersion,
+                discord.presence.state
+                );
 
             }
             else
@@ -297,4 +297,4 @@ namespace SwitchPresence
             form.ShowDialog();
         }
     }
- }
+}

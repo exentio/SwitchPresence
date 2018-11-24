@@ -12,25 +12,25 @@ namespace SwitchPresence
         }
 
         //links
-        private void linkLabel_twitter_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkLabel_twitter_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://twitter.com/random666_kys");
         }
-        private void linkLabel_github_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkLabel_github_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://github.com/random0666");
         }
-        private void linkLabel_youtube_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkLabel_youtube_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://www.youtube.com/channel/UCYjhNcCjH9XXf77VtW8pTng");
         }
 
-        private void button_ok_Click(object sender, EventArgs e)
+        private void Button_ok_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://twitter.com/Sun_Courier");
         }
@@ -40,7 +40,7 @@ namespace SwitchPresence
             Process.Start("https://github.com/SunTheCourier");
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://www.youtube.com/channel/UCuhdQw_BibXDqPimSQn4iQg");
         }

@@ -21,14 +21,14 @@ namespace SwitchPresence
 
         public enum SendCommandType : byte
         {
-            SendBuffer      = 0,
-            Confirm         = 1,
-            GetControlData  = 2,
-            ListApps        = 3,
-            GetActiveUser   = 4,
-            GetCurrentApp   = 5,
-            GetVersion      = 6,
-            Disconnect      = 0xFF,
+            SendBuffer = 0,
+            Confirm = 1,
+            GetControlData = 2,
+            ListApps = 3,
+            GetActiveUser = 4,
+            GetCurrentApp = 5,
+            GetVersion = 6,
+            Disconnect = 0xFF,
         }
 
         public const string DataErr = "Error while receiving data!";
@@ -75,7 +75,7 @@ namespace SwitchPresence
             if ((magic & 0xFFFFFF00) != SRV_MAGIC)
                 throw new TcpCommandException($"Invalid Response magic: 0x{magic & 0xFFFFFF:X} instead of 0x{SRV_MAGIC:X}");
         }
-        
+
         //header + data
         public static byte[] ReceiveBuffer(Socket client, int size)
         {

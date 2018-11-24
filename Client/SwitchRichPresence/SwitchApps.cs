@@ -86,7 +86,7 @@ namespace SwitchPresence
             int ver = TcpCommand.ReceiveInt32(client);
             return ver;
         }
-        
+
         public TitleInfo GetPlaying()
         {
             TcpCommand.SendCommand(client, TcpCommand.SendCommandType.GetCurrentApp);

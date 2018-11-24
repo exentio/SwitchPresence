@@ -23,7 +23,7 @@ namespace SwitchPresence
         public const int ICON_SIZE = 0x20000;
         public const int TITLE_INFO_SIZE = NACP_SIZE + ICON_SIZE;
 
-        private Socket client;
+        private readonly Socket client;
 
         public ulong TitleID { get; private set; }
         public Bitmap Icon { get; private set; }
@@ -73,7 +73,7 @@ namespace SwitchPresence
                 using (MemoryStream ms = new MemoryStream(iconData))
                     Icon = (Bitmap)Image.FromStream(ms);
 
-                if(!IsCached())
+                if (!IsCached())
                 {
                     File.WriteAllBytes(GetPath(), buff);
                 }

@@ -62,7 +62,7 @@
             this.button_ok.TabIndex = 2;
             this.button_ok.Text = "Ok";
             this.button_ok.UseVisualStyleBackColor = true;
-            this.button_ok.Click += new System.EventHandler(this.button_ok_Click);
+            this.button_ok.Click += new System.EventHandler(this.Button_ok_Click);
             // 
             // label2
             // 
@@ -82,7 +82,7 @@
             this.linkLabel1.TabIndex = 4;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Download page";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // UpdateForm
             // 
