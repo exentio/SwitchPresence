@@ -38,7 +38,6 @@
             this.checkBox_showUser = new System.Windows.Forms.CheckBox();
             this.checkBox_showTime = new System.Windows.Forms.CheckBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label3 = new System.Windows.Forms.Label();
             this.textBox_clientId = new System.Windows.Forms.TextBox();
             this.textBox_overridesicon = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -51,6 +50,7 @@
             this.textBox_overridedetail = new System.Windows.Forms.TextBox();
             this.warn = new System.Windows.Forms.Label();
             this.AFS = new System.Windows.Forms.CheckBox();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_icon)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -149,16 +149,6 @@
             this.linkLabel1.Text = "About";
             this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(61, 70);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 13);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Client ID :";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // textBox_clientId
             // 
@@ -268,11 +258,23 @@
             this.AFS.UseVisualStyleBackColor = true;
             this.AFS.Visible = false;
             // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(59, 66);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(50, 13);
+            this.linkLabel2.TabIndex = 22;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "Client ID:";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel2_LinkClicked);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(338, 440);
+            this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.AFS);
             this.Controls.Add(this.warn);
             this.Controls.Add(this.label6);
@@ -281,7 +283,6 @@
             this.Controls.Add(this.textBox_overridelicon);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox_overridesicon);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox_clientId);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.checkBox_showTime);
@@ -319,7 +320,6 @@
         private System.Windows.Forms.CheckBox checkBox_showUser;
         private System.Windows.Forms.CheckBox checkBox_showTime;
         private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox_clientId;
         private System.Windows.Forms.TextBox textBox_overridesicon;
         private System.Windows.Forms.Label label4;
@@ -332,6 +332,7 @@
         private System.Windows.Forms.TextBox textBox_overridedetail;
         private System.Windows.Forms.Label warn;
         private System.Windows.Forms.CheckBox AFS;
+        private System.Windows.Forms.LinkLabel linkLabel2;
     }
 }
 

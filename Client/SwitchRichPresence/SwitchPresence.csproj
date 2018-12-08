@@ -113,6 +113,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="discord sysmodule icon5.ico" />
+    <None Include="discord-rpc.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

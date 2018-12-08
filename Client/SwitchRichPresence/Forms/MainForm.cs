@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Net.Sockets;
@@ -296,5 +297,7 @@ namespace SwitchPresence
             AboutForm form = new AboutForm();
             form.ShowDialog();
         }
+
+        private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => Process.Start($"https://discordapp.com/developers/applications/{textBox_clientId.Text}");
     }
 }
