@@ -14,10 +14,8 @@ namespace SwitchPresence
         public void Initialize(string appId)
         {
             presence = new DiscordRpc.RichPresence();
-            handlers = new DiscordRpc.EventHandlers
-            {
-                readyCallback = ReadyCallback
-            };
+            handlers = new DiscordRpc.EventHandlers();
+            handlers.readyCallback = ReadyCallback;
             handlers.disconnectedCallback += DisconnectedCallback;
             handlers.errorCallback += ErrorCallback;
             DiscordRpc.Initialize(appId, ref handlers, true, optionalSteamId);

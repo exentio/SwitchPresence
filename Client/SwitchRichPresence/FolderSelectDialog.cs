@@ -20,14 +20,13 @@ namespace System.Windows.Forms
         /// </summary>
         public FolderSelectDialog()
         {
-            ofd = new System.Windows.Forms.OpenFileDialog
-            {
-                Filter = "Folders|\n",
-                AddExtension = false,
-                CheckFileExists = false,
-                DereferenceLinks = true,
-                Multiselect = false
-            };
+            ofd = new System.Windows.Forms.OpenFileDialog();
+
+            ofd.Filter = "Folders|\n";
+            ofd.AddExtension = false;
+            ofd.CheckFileExists = false;
+            ofd.DereferenceLinks = true;
+            ofd.Multiselect = false;
         }
 
         #region Properties
@@ -47,7 +46,7 @@ namespace System.Windows.Forms
         public string Title
         {
             get { return ofd.Title; }
-            set { ofd.Title = value ?? "Select a folder"; }
+            set { ofd.Title = value == null ? "Select a folder" : value; }
         }
 
         /// <summary>
@@ -110,12 +109,10 @@ namespace System.Windows.Forms
             }
             else
             {
-                var fbd = new FolderBrowserDialog
-                {
-                    Description = this.Title,
-                    SelectedPath = this.InitialDirectory,
-                    ShowNewFolderButton = false
-                };
+                var fbd = new FolderBrowserDialog();
+                fbd.Description = this.Title;
+                fbd.SelectedPath = this.InitialDirectory;
+                fbd.ShowNewFolderButton = false;
                 if (fbd.ShowDialog(new WindowWrapper(hWndOwner)) != DialogResult.OK) return DialogResult.Cancel;
                 ofd.FileName = fbd.SelectedPath;
                 flag = true;
@@ -149,7 +146,7 @@ namespace System.Windows.Forms
             get { return _hwnd; }
         }
 
-        private readonly IntPtr _hwnd;
+        private IntPtr _hwnd;
     }
 
     /// <summary>
@@ -164,7 +161,7 @@ namespace System.Windows.Forms
     {
         #region variables
 
-        readonly string m_ns;
+        string m_ns;
         Assembly m_asmb;
 
         #endregion

@@ -48,8 +48,8 @@ namespace Random0666_s_ToolBox.Modules.NintendoArchive
         public string ProductCode;
         public string AppVersion;
         public string Passphrase;
-
-        private bool TryLang(NACPLangID langID, out Language retLang)
+        
+        private bool tryLang(NACPLangID langID, out Language retLang)
         {
             foreach (var lang in Languages)
             {
@@ -65,40 +65,41 @@ namespace Random0666_s_ToolBox.Modules.NintendoArchive
 
         public Language GetLanguage()
         {
+            Language lang;
 
             //most to less common alphabet
-            if (TryLang(NACPLangID.AmericanEnglish, out Language lang))
+            if (tryLang(NACPLangID.AmericanEnglish, out lang))
                 return lang;
-            if (TryLang(NACPLangID.BritishEnglish, out lang))
+            if (tryLang(NACPLangID.BritishEnglish, out lang))
                 return lang;
-            if (TryLang(NACPLangID.CanadianFrench, out lang))
+            if (tryLang(NACPLangID.CanadianFrench, out lang))
                 return lang;
-            if (TryLang(NACPLangID.Dutch, out lang))
+            if (tryLang(NACPLangID.Dutch, out lang))
                 return lang;
-            if (TryLang(NACPLangID.French, out lang))
+            if (tryLang(NACPLangID.French, out lang))
                 return lang;
-            if (TryLang(NACPLangID.German, out lang))
+            if (tryLang(NACPLangID.German, out lang))
                 return lang;
-            if (TryLang(NACPLangID.Spanish, out lang))
+            if (tryLang(NACPLangID.Spanish, out lang))
                 return lang;
-            if (TryLang(NACPLangID.LatinAmericanSpanish, out lang))
+            if (tryLang(NACPLangID.LatinAmericanSpanish, out lang))
                 return lang;
-            if (TryLang(NACPLangID.Italian, out lang))
+            if (tryLang(NACPLangID.Italian, out lang))
                 return lang;
-            if (TryLang(NACPLangID.Portuguese, out lang))
+            if (tryLang(NACPLangID.Portuguese, out lang))
                 return lang;
-            if (TryLang(NACPLangID.Taiwanese, out lang))
+            if (tryLang(NACPLangID.Taiwanese, out lang))
                 return lang;
-            if (TryLang(NACPLangID.Japanese, out lang))
+            if (tryLang(NACPLangID.Japanese, out lang))
                 return lang;
-            if (TryLang(NACPLangID.Korean, out lang))
+            if (tryLang(NACPLangID.Korean, out lang))
                 return lang;
-            if (TryLang(NACPLangID.Chinese, out lang))
+            if (tryLang(NACPLangID.Chinese, out lang))
                 return lang;
-            if (TryLang(NACPLangID.Russian, out lang))
+            if (tryLang(NACPLangID.Russian, out lang))
                 return lang;
 
-            throw new Exception("Can't find common title language!");
+            throw new Exception("Can't find common title lang !");
         }
 
         private void ParseFile(BinaryReader br)
