@@ -13,7 +13,7 @@ namespace SwitchPresence
         public static string TEMP_PATH = Path.GetTempPath() + @"\SwitchRichPresence\";
 
         string appID;
-        DiscordController discord = new DiscordController();
+        DiscordController discord;
         Thread UpdatePlaying;
         SwitchApps apps = null;
         TitleInfo CurrentPlaying = null;
@@ -26,6 +26,13 @@ namespace SwitchPresence
         {
             bool newTitle = (CurrentPlaying != null && CurrentPlaying.TitleID != CurrentTid);
 
+            if (discord.rpcClient.Disposed || discord == null) // We deleted the object before and now we a new one
+            {
+                discord = new DiscordController();
+                discord.Initialize(appID);
+                discord.rpcClient.ClearPresence();
+            }
+
             if (CurrentPlaying != null && !AFS.Checked)
             {
                 if (newTitle)
@@ -34,7 +41,6 @@ namespace SwitchPresence
                         pictureBox_icon.Image.Dispose();
                     pictureBox_icon.Image = new Bitmap(CurrentPlaying.Icon);
 
-                    startTime = DateTime.UtcNow;
                     CurrentTid = CurrentPlaying.TitleID;
 
                     discord.rpcClient.SetPresence(new DiscordRPC.RichPresence()
@@ -46,10 +52,6 @@ namespace SwitchPresence
                             SmallImageText = "SwitchPresence Sysmodule",
                             LargeImageKey = $"{CurrentPlaying.TitleID:x16}",
                             LargeImageText = CurrentPlaying.Metadata.GetLanguage().ApplicationName
-                        },
-                        Timestamps = new DiscordRPC.Timestamps()
-                        {
-                            Start = startTime
                         }
                     });
                     OverrideDetail();
@@ -137,6 +139,7 @@ namespace SwitchPresence
                 Directory.CreateDirectory(TEMP_PATH);
             }
 
+            discord = new DiscordController();
             discord.Initialize(appID);
 
             textBox_overridedetail.TextChanged += (o, e) => OverrideDetail();
@@ -150,8 +153,6 @@ namespace SwitchPresence
             {
                 //close safely
                 Button_connect_Click(null, null);
-                discord.rpcClient.ClearPresence();
-                discord.rpcClient.Dispose();
             }
         }
 
@@ -182,6 +183,8 @@ namespace SwitchPresence
                 textBox_clientId.Enabled = false;
                 utilsToolStripMenuItem.Visible = true;
                 button_connect.Text = "Abort";
+
+                startTime = DateTime.UtcNow;
 
                 UpdatePlaying = new Thread(() =>
                 {
@@ -244,9 +247,13 @@ namespace SwitchPresence
 
                 if (checkBox_showUser.Checked && CurrentUser != null)
                     discord.rpcClient.UpdateState($"User: {CurrentUser}");
-
                 else
                     discord.rpcClient.UpdateState(null);
+
+                if (checkBox_showTime.Checked)
+                    discord.rpcClient.UpdateStartTime(startTime);
+                else
+                    discord.rpcClient.UpdateClearTime();
             }
         }
 
@@ -254,7 +261,7 @@ namespace SwitchPresence
         {
             if (string.IsNullOrWhiteSpace(textBox_overridedetail.Text) && (CurrentPlaying != null))
             {
-                discord.rpcClient.UpdateDetails($"Playing {CurrentPlaying.Metadata.GetLanguage().ApplicationName}");
+                discord.rpcClient.UpdateDetails($"{CurrentPlaying.Metadata.GetLanguage().ApplicationName}");
             }
             else if (CurrentPlaying != null)
             {
