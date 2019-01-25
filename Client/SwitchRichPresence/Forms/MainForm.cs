@@ -18,7 +18,7 @@ namespace SwitchPresence
         SwitchApps apps = null;
         TitleInfo CurrentPlaying = null;
         ulong CurrentTid = 0;
-        long startTime;
+        DateTime startTime;
         string CurrentUser = null;
 
 
@@ -34,18 +34,24 @@ namespace SwitchPresence
                         pictureBox_icon.Image.Dispose();
                     pictureBox_icon.Image = new Bitmap(CurrentPlaying.Icon);
 
-                    startTime = (long)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                    startTime = DateTime.UtcNow;
                     CurrentTid = CurrentPlaying.TitleID;
 
-                    discord.presence = new DiscordRpc.RichPresence()
+                    discord.rpcClient.SetPresence(new DiscordRPC.RichPresence()
                     {
-                        details = $"Playing {CurrentPlaying.Metadata.GetLanguage().ApplicationName}",
-                        smallImageKey = "icon",
-                        smallImageText = "SwitchPresence Sysmodule",
-                        largeImageKey = $"{CurrentPlaying.TitleID:x16}",
-                        largeImageText = CurrentPlaying.Metadata.GetLanguage().ApplicationName,
-                        startTimestamp = startTime,
-                    };
+                        Details = $"{CurrentPlaying.Metadata.GetLanguage().ApplicationName}",
+                        Assets = new DiscordRPC.Assets()
+                        {
+                            SmallImageKey = "icon",
+                            SmallImageText = "SwitchPresence Sysmodule",
+                            LargeImageKey = $"{CurrentPlaying.TitleID:x16}",
+                            LargeImageText = CurrentPlaying.Metadata.GetLanguage().ApplicationName
+                        },
+                        Timestamps = new DiscordRPC.Timestamps()
+                        {
+                            Start = startTime
+                        }
+                    });
                     OverrideDetail();
                     OverrideLargeIcon();
                     OverrideSmallIcon();
@@ -62,7 +68,7 @@ namespace SwitchPresence
                 CurrentPlaying.Metadata.GetLanguage().ApplicationName,
                 CurrentPlaying.Metadata.TitleId,
                 CurrentPlaying.Metadata.AppVersion,
-                discord.presence.state
+                discord.rpcClient.CurrentPresence.State
                 );
 
             }
@@ -72,19 +78,22 @@ namespace SwitchPresence
                     pictureBox_icon.Image.Dispose();
                 pictureBox_icon.Image = null;
 
-                discord.presence = new DiscordRpc.RichPresence()
+                discord.rpcClient.SetPresence(new DiscordRPC.RichPresence()
                 {
-                    details = "Not Playing",
-                    state = null,
-                    smallImageKey = null,
-                    smallImageText = null,
-                    largeImageKey = null,
-                    largeImageText = null,
-                };
+                    Details = "Not Playing",
+                    Assets = new DiscordRPC.Assets()
+                    {
+                        SmallImageKey = null,
+                        SmallImageText = null,
+                        LargeImageKey = null,
+                        LargeImageText = null
+                    },
+                    State = null
+                });
                 label_game.Text = "Not playing";
                 CurrentTid = 0;
             }
-            DiscordRpc.UpdatePresence(discord.presence);
+            discord.rpcClient.Invoke();
         }
 
 
@@ -129,7 +138,6 @@ namespace SwitchPresence
             }
 
             discord.Initialize(appID);
-            DiscordRpc.UpdatePresence(discord.presence);
 
             textBox_overridedetail.TextChanged += (o, e) => OverrideDetail();
             textBox_overridelicon.TextChanged += (o, e) => OverrideLargeIcon();
@@ -142,9 +150,9 @@ namespace SwitchPresence
             {
                 //close safely
                 Button_connect_Click(null, null);
+                discord.rpcClient.ClearPresence();
+                discord.rpcClient.Dispose();
             }
-
-            DiscordRpc.Shutdown();
         }
 
         private void Button_connect_Click(object sender, EventArgs e)
@@ -207,6 +215,8 @@ namespace SwitchPresence
                 CurrentPlaying = null;
                 apps = null;
                 UpdateInfo();
+                discord.rpcClient.ClearPresence();
+                discord.rpcClient.Dispose();
             }
         }
 
@@ -232,15 +242,11 @@ namespace SwitchPresence
             if (apps != null)
             {
 
-                if (checkBox_showUser.Checked)
-                    discord.presence.state = (CurrentUser == null)
-                        ? "No user selected."
-                        : $"User: {CurrentUser}";
+                if (checkBox_showUser.Checked && CurrentUser != null)
+                    discord.rpcClient.UpdateState($"User: {CurrentUser}");
 
                 else
-                    discord.presence.state = null;
-
-                DiscordRpc.UpdatePresence(discord.presence);
+                    discord.rpcClient.UpdateState(null);
             }
         }
 
@@ -248,11 +254,11 @@ namespace SwitchPresence
         {
             if (string.IsNullOrWhiteSpace(textBox_overridedetail.Text) && (CurrentPlaying != null))
             {
-                discord.presence.details = $"Playing {CurrentPlaying.Metadata.GetLanguage().ApplicationName}";
+                discord.rpcClient.UpdateDetails($"Playing {CurrentPlaying.Metadata.GetLanguage().ApplicationName}");
             }
             else if (CurrentPlaying != null)
             {
-                discord.presence.details = textBox_overridedetail.Text;
+                discord.rpcClient.UpdateDetails(textBox_overridedetail.Text);
             }
             SaveConfig();
         }
@@ -261,11 +267,11 @@ namespace SwitchPresence
         {
             if (string.IsNullOrWhiteSpace(textBox_overridesicon.Text))
             {
-                discord.presence.smallImageKey = "icon";
+                discord.rpcClient.UpdateSmallAsset("SmallImageKey", "icon");
             }
             else
             {
-                discord.presence.smallImageKey = textBox_overridesicon.Text;
+                discord.rpcClient.UpdateSmallAsset("SmallImageKey", textBox_overridesicon.Text);
             }
             SaveConfig();
         }
@@ -274,11 +280,11 @@ namespace SwitchPresence
         {
             if (string.IsNullOrWhiteSpace(textBox_overridelicon.Text) && (CurrentPlaying != null))
             {
-                discord.presence.largeImageKey = $"{CurrentPlaying.TitleID:x16}";
+                discord.rpcClient.UpdateLargeAsset("LargeImageKey", $"{CurrentPlaying.TitleID:x16}");
             }
             else if (CurrentPlaying != null)
             {
-                discord.presence.largeImageKey = textBox_overridelicon.Text;
+                discord.rpcClient.UpdateLargeAsset("LargeImageKey", textBox_overridelicon.Text);
             }
             SaveConfig();
         }
@@ -287,8 +293,12 @@ namespace SwitchPresence
         {
             if (apps != null)
             {
-                discord.presence.startTimestamp = (checkBox_showTime.Checked) ? startTime : 0;
-                DiscordRpc.UpdatePresence(discord.presence);
+                DateTime time;
+                if (checkBox_showTime.Checked)
+                    time = startTime;
+                else
+                    time = default(DateTime);
+                discord.rpcClient.UpdateStartTime(time);
             }
         }
 

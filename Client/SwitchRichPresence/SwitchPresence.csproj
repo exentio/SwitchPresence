@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>SwitchPresence</RootNamespace>
     <AssemblyName>SwitchPresence</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -36,6 +36,12 @@
     <ApplicationIcon>discord sysmodule icon5.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DiscordRPC">
+      <HintPath>discord-rpc-csharp\DiscordRPC\bin\Release\DiscordRPC.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>discord-rpc-csharp\DiscordRPC\bin\Release\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DiscordController.cs" />
     <Compile Include="Forms\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,8 +63,6 @@
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Config.cs" />
-    <Compile Include="DiscordController.cs" />
-    <Compile Include="DiscordRpc.cs" />
     <Compile Include="FolderSelectDialog.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -114,9 +119,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="discord sysmodule icon5.ico" />
-    <None Include="discord-rpc.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

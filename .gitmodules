@@ -1,3 +1,7 @@
 [submodule "Client/discord-rpc"]
 	path = Client/discord-rpc
 	url = https://github.com/discordapp/discord-rpc
+[submodule "Client/SwitchRichPresence/discord-rpc-csharp"]
+	path = Client/SwitchRichPresence/discord-rpc-csharp
+	url = https://github.com/Lachee/discord-rpc-csharp
+	branch = cross-platform

@@ -1,11 +1,11 @@
 ﻿using System;
+using DiscordRPC;
 
 namespace SwitchPresence
 {
     public class DiscordController
     {
-        public DiscordRpc.RichPresence presence;
-        DiscordRpc.EventHandlers handlers;
+        public DiscordRpcClient rpcClient;
         public string optionalSteamId;
 
         /// <summary>
@@ -13,12 +13,8 @@ namespace SwitchPresence
         /// </summary>
         public void Initialize(string appId)
         {
-            presence = new DiscordRpc.RichPresence();
-            handlers = new DiscordRpc.EventHandlers();
-            handlers.readyCallback = ReadyCallback;
-            handlers.disconnectedCallback += DisconnectedCallback;
-            handlers.errorCallback += ErrorCallback;
-            DiscordRpc.Initialize(appId, ref handlers, true, optionalSteamId);
+            rpcClient = new DiscordRpcClient(appId);
+            rpcClient.Initialize();
         }
 
         public void ReadyCallback()
