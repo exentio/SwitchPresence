@@ -72,7 +72,7 @@
             Ignore = 2
         }
 
-#if (WINDOWS)
+#if !MONO
         [DllImport("discord-rpc.dll", EntryPoint = "Discord_Initialize", CallingConvention = CallingConvention.Cdecl)]
         public static extern void Initialize(string applicationId, ref EventHandlers handlers, bool autoRegister, string optionalSteamId);
 
@@ -90,7 +90,7 @@
 
         [DllImport("discord-rpc.dll", EntryPoint = "Discord_Respond", CallingConvention = CallingConvention.Cdecl)]
         public static extern void Respond(string userId, Reply reply);
-#elif (UX_PLATFORM)
+#else
         [DllImport("libdiscord-rpc.so", EntryPoint = "Discord_Initialize", CallingConvention = CallingConvention.Cdecl)]
         public static extern void Initialize(string applicationId, ref EventHandlers handlers, bool autoRegister, string optionalSteamId);
 

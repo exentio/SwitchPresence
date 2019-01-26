@@ -121,7 +121,8 @@ namespace SwitchPresence
 
             LoadConfig();
 
-            Updater.GetUpdate();
+            //Let's not break it with unwanted updates from the main repo
+            //Updater.GetUpdate();
 
             if (!Directory.Exists(TEMP_PATH))
             {
