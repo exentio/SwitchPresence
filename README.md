@@ -16,9 +16,7 @@
 [Discord Rich Presence]
 kip1=switch-rich-presence.kip
 ```
-- Instead if you're using a CFW, check for a way to install sysmodules.
-	- With ReiNX, you copy the .kip file into `ReiNX/sysmodules`. You can use the ReiNX Toolkit to disable it (basically it moves the .kip to `sysmodules.dis`)
-- Boot your switch into RCM mode and run your payload (ReiNX launcher, hekate or whatever).
+- Boot your switch into RCM mode and run your payload of choice.
 	- If using hekate, launch your hekate configuration with rich presence and wait until your switch turns on completely.
 - Make sure that Discord is running.
 - Open the client (`SwitchRichPresence.exe`) and click the "Connect" button.
